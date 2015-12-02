@@ -1,11 +1,19 @@
-contract User  {
+ contract User  {
 
 string name;
-uint score;
+string country;
+uint age;
 
-function User(string _name){
+function User(string _name,uint _age){
     name = _name;
+    age = _age;
 }
+
+function getAge() returns (uint){
+    return age;
+}
+
+
 }
 
 
@@ -17,42 +25,62 @@ contract Teacher is User {
 
 }
 
-contract Answer{
+contract Solution{
    string description;
-   
-   function Answer(string _description){
+ 
+    
+   function Solution(string _description){
        description = _description;
    }
    
     
 }
 
+
+ 
+
+
 contract Problem {
     string description;
-    uint answerCount;
-    mapping(uint => Answer) answers;
+    uint solutionCount;
+
+    Solution []  juniorSolutions;
+    Solution []  middleSolutions;
+    Solution []  highSolutions;
+
     mapping (address => uint) votes;    
     
-    function Vote(uint _answerNumber){
+    function voteJunior(uint _answerNumber){
+        address user = msg.sender;
+        votes[user] = _answerNumber;
+    }
+
+   function voteMiddle(uint _answerNumber){
+        address user = msg.sender;
+        votes[user] = _answerNumber;
+    }
+
+   function voteSenior(uint _answerNumber){
         address user = msg.sender;
         votes[user] = _answerNumber;
     }
     
-    function createAnswer(string _description){
-        Answer answer = new Answer(_description);
-        answerCount++;
-        answers[answerCount] = answer;
-    }
+
+    // function createSolution(string _description){
+    //     Answer answer = new Answer(_description);
+    //     answerCount++;
+    //     answers[answerCount] = answer;
+    // }
     
     
-    function getVotesForAnswer(uint _answerNumber) returns (uint){
-        for(uint ii=0;ii<answerCount;ii++){
+    // function getVotesForAnswer(uint _answerNumber) returns (uint){
+    //     for(uint ii=0;ii<answerCount;ii++){
          
-        }
+    //     }
         
         
         
-    }
+    // }
     
     
 }
@@ -63,6 +91,11 @@ contract Team {
     uint teamScore;
     User[] members;
     
+    enum Category{junior,middle,high}
+    uint minAge;
+    uint maxAge;
+    
+    
     function Team(string _teamName,string _teamMotto,Teacher _teacher){
         teamName = _teamName;
         teamMotto = _teamMotto;
@@ -71,8 +104,11 @@ contract Team {
     
     function addMembers(User [] newMembers){
             for (uint ii = 0;ii<newMembers.length;ii++){
+            if ((newMembers[ii].getAge() >= minAge) && (newMembers[ii].getAge() <= maxAge)){
         members.push(newMembers[ii]);
-        }
+        
+            }
+            }
     }
     
    
@@ -84,7 +120,7 @@ contract Register is named("Register")  {
     User teacher;
 
 function Register(string _teacherName) {
-    teacher = new User(_teacherName);
+    teacher = new User(_teacherName,100);
     
 }
 
