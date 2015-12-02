@@ -62,29 +62,20 @@ contract Problem {
     
 }
 
-contract Register is named("Register")  {
+contract register is named("Register")  {
     mapping(string=>address) users;
     mapping(address => uint) teams;
-    user teacher;
-
-function createRegister(string _teacherName) {
-    Teacher teacher = new Teacher();
-    teacher.createTeacher(_teacherName);
+    Problem[] problems;
     
+modifier userNotExists(string _userName,uint _age,string _country ) { if (users[_userName]==address(0x0)) _ }
+
+function createUser  (string _userName,uint _age,string _country ) userNotExists( _userName, _age, _country ) returns (address){
+    user newUser = new user();
+    newUser.createUserDetails(_userName,_age,_country);
+    
+  return newUser;
 }
 
-
-
 }
 
-//Some Tests
-
-contract Tests{
-    
-    function testRegister(){
-        
-        
-    }
-    
-}
 
