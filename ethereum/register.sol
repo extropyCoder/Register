@@ -3,25 +3,26 @@ import "user.sol";
 import "problem.sol";
 
 
-contract register is named("Register")  {
+contract Register is named("Register") ,owned {
     mapping(string=>address) users;
     mapping(address => uint) teams;
-    problem[] problems;
+    Problem[] problems;
     
 modifier userNotExists(string _userName,uint _age,string _country ) { if (users[_userName]==address(0x0)) _ }
+modifier userIsCreator() {if (msg.sender==owner) _}
+
 
 function createUser  (string _userName,uint _age,string _country ) userNotExists( _userName, _age, _country ) returns (address){
-    user newUser = new user();
-    newUser.createUserDetails(_userName,_age,_country);
+    User newUser = new User(_userName,_age,_country);
     return newUser;
 }
 
-function createProblem(string _description){
-    Problem problem = new Problem();
-    problem.description = _description;
+
+function createProblem(string _description) userIsCreator returns (address){
+    Problem newProblem = new Problem(_description);
+    
 }
     
 }
-
 
 
