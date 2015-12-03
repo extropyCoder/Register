@@ -1,11 +1,11 @@
 import "user.sol";
-contract Team {
+contract team {
     string teamName;
     string teamMotto;
     uint teamScore;
-    User[] members;
+    user[] members;
     
-    enum Category{junior,middle,senior}
+    enum Category {junior,middle,senior}
     uint minAge;
     uint maxAge;
     
@@ -35,12 +35,11 @@ contract Team {
     }
 
     
-    function addMembers(User [] newMembers){
+    function addMembers(user [] newMembers){
             for (uint ii = 0;ii<newMembers.length;ii++){
             if ((newMembers[ii].getAge() >= minAge) && (newMembers[ii].getAge() <= maxAge)){
-        members.push(newMembers[ii]);
-        
-            }
+                members.push(newMembers[ii]);
+                }
             }
     }
     
