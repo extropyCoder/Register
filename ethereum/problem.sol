@@ -1,48 +1,69 @@
+import "team.sol";
+import "solution.sol";
+
 contract problem {
     string public description;
-    uint solutionCount;
-
+   
     solution []  juniorSolutions;
     solution []  middleSolutions;
-    solution []  highSolutions;
+    solution []  seniorSolutions;
 
-    mapping (address => uint) votes;    
+    mapping (address => address) juniorVotes;
+    mapping (address => address) middleVotes;
+    mapping (address => address) seniorVotes;
     
     function setDescription(string _description){
         description = _description;
     }
     
-    function voteJunior(uint _answerNumber){
+    function voteJunior(solution  _solution){
         address user = msg.sender;
-        votes[user] = _answerNumber;
+        juniorVotes[user] = _solution;
     }
 
-   function voteMiddle(uint _answerNumber){
-        address user = ms.sender;
-        votes[user] = _answerNumber;
-    }
-
-   function voteSenior(uint _answerNumber){
+    function voteMiddle(solution  _solution){
         address user = msg.sender;
-        votes[user] = _answerNumber;
+        middleVotes[user] = _solution;
+    }
+
+    function voteSenior(solution  _solution){
+        address user = msg.sender;
+        seniorVotes[user] = _solution;
+    }
+
+
+    function createJuniorSolution(string _description){
+        solution newSolution =  createSolution(_description);
+
+        juniorSolutions.push(newSolution);        
+        
     }
     
+    function createMiddleSolution(string _description){
+        solution newSolution =  createSolution(_description);
 
-    // function createSolution(string _description){
-    //     Answer answer = new Answer(_description);
-    //     answerCount++;
-    //     answers[answerCount] = answer;
-    // }
+        middleSolutions.push(newSolution);        
+        
+    }
+    
+    function createSeniorSolution(string _description){
+        solution newSolution =  createSolution(_description);
+        seniorSolutions.push(newSolution);        
+        
+    }
+    
+    function createSolution(string _description) private returns (solution){
+        solution newSolution = new solution();
+        newSolution.setDescription(_description);  
+    }
     
     
-    // function getVotesForAnswer(uint _answerNumber) returns (uint){
-    //     for(uint ii=0;ii<answerCount;ii++){
-         
-    //     }
-        
-        
-        
-    // }
     
+    function voteForSolution(){
+        
+    }
+        
+        
+
     
 }
