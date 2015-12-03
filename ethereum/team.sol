@@ -1,9 +1,9 @@
 import "user.sol";
-contract team {
+contract Team {
     string teamName;
     string teamMotto;
     uint teamScore;
-    user[] members;
+    User[] members;
     
     enum Category {junior,middle,senior}
     uint minAge;
@@ -35,7 +35,7 @@ contract team {
     }
 
     
-    function addMembers(user [] newMembers){
+    function addMembers(User [] newMembers){
             for (uint ii = 0;ii<newMembers.length;ii++){
             if ((newMembers[ii].getAge() >= minAge) && (newMembers[ii].getAge() <= maxAge)){
                 members.push(newMembers[ii]);
