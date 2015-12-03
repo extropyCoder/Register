@@ -1,15 +1,15 @@
 import "std.sol";
 
-contract user  {
+contract User  {
 
 string name;
 string country;
 uint age;
 
-function createUserDetails(string _name,uint _age,string _country){
+function User(string _name,uint _age,string _country){
     name = _name;
     age = _age;
-    country = _country;
+    country = _country; 
 }
 
 function getAge() returns (uint){
@@ -19,7 +19,7 @@ function getAge() returns (uint){
 
 }
 
-contract Teacher is user {
+contract Teacher is User {
 
     function createTeacher(string _name){
         name = _name;
