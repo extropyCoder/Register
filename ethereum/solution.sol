@@ -1,9 +1,10 @@
 import "std.sol";
-contract solution{
+contract Solution{
    string description;
- 
-   function createSolution(string _description){
-       description = _description;
-   }
-   
+
+    function Solution(string _description){
+           description = _description; 
+    }
+
+
 }
