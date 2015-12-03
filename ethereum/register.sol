@@ -18,8 +18,8 @@ function createUser  (string _userName,uint _age,string _country ) userNotExists
 }
 
 
-function createProblem(string _description) userIsCreator returns (address){
-    Problem newProblem = new Problem(_description);
+function createProblem(string _description,uint _deadline) userIsCreator returns (address){
+    Problem newProblem = new Problem(_description,_deadline);
     
 }
     
