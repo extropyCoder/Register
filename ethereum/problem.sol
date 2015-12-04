@@ -17,7 +17,7 @@ contract Problem {
     
     function Problem(string _description,uint _deadline){
          description = _description;
-         deadline = now + _deadline * 1 days;
+         deadline = _deadline;
     }
     
 
@@ -37,26 +37,24 @@ contract Problem {
     }
 
 
-    function createJuniorSolution(string _description) problemActive {
-        Solution newSolution =  new Solution(_description);
+    function createJuniorSolution(string _description,Team _team) problemActive {
+        Solution newSolution =  new Solution(_description,_team);
         juniorSolutions.push(newSolution);        
         
     }
-    
-    function createMiddleSolution(string _description) problemActive {
-      Solution newSolution =  new Solution(_description);
-      middleSolutions.push(newSolution);        
+        function createMiddleSolution(string _description,Team _team) problemActive {
+        Solution newSolution =  new Solution(_description,_team);
+        juniorSolutions.push(newSolution);        
         
     }
-    
-    function createSeniorSolution(string _description) problemActive {
-        Solution newSolution =  new Solution(_description);
-        seniorSolutions.push(newSolution);        
+        function createSeniorSolution(string _description,Team _team) problemActive {
+        Solution newSolution =  new Solution(_description,_team);
+        juniorSolutions.push(newSolution);        
         
     }
-    
-    function createSolution(string _description) private returns (Solution){
-        Solution newSolution = new Solution(_description);
+
+    function createSolution(string _description,Team _team) private returns (Solution){
+        Solution newSolution = new Solution(_description,_team);
     }
     
 

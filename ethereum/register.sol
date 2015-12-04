@@ -8,12 +8,12 @@ contract Register is named("Register") ,owned {
     mapping(address => uint) teams;
     Problem[] problems;
     
-modifier userNotExists(string _userName,uint _age,string _country ) { if (users[_userName]==address(0x0)) _ }
+modifier userNotExists(string _userName,string _salt,string _hashPassword ) { if (users[_userName]==address(0x0)) _ }
 modifier userIsCreator() {if (msg.sender==owner) _}
 
 
-function createUser  (string _userName,uint _age,string _country ) userNotExists( _userName, _age, _country ) returns (address){
-    User newUser = new User(_userName,_age,_country);
+function createUser  (string _name,string _salt,string _hashPassword ) userNotExists( _name, _salt, _hashPassword) returns (address){
+    User newUser = new User( _name, _salt, _hashPassword);
     return newUser;
 }
 
@@ -24,6 +24,5 @@ function createProblem(string _description,uint _deadline) userIsCreator returns
 }
     
 }
-
 
 
