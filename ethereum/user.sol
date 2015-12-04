@@ -1,13 +1,29 @@
-import "std.sol";
 
-contract User  {
+contract User {
+    string name;
+    string salt;
+    string hashPassword;
+    
+    function User(string _name,string _salt,string _hashPassword){
+        name = _name;
+        salt = _salt;
+        hashPassword = _hashPassword;
+        
+    }
+    
+}
 
-string name;
+
+contract Child is User {
+
+
 string country;
-uint age;
+uint public age;
 
-function User(string _name,uint _age,string _country){
+function Child(string _name,string _salt,string _hashPassword,uint _age,string _country){
     name = _name;
+    salt = _salt;
+    hashPassword = _hashPassword;
     age = _age;
     country = _country; 
 }
@@ -19,12 +35,17 @@ function getAge() returns (uint){
 
 }
 
-contract Teacher is User {
+contract Teacher is Child {
 
-    function createTeacher(string _name){
-        name = _name;
-        age = 100;
-      
+    function Teacher(string _name,string _salt,string _hashPassword,string _country){
+    name = _name;
+    salt = _salt;
+    hashPassword = _hashPassword;
+    country = _country; 
+
+        age = 100;  
     }
+
+
 
 }

@@ -17,7 +17,7 @@ contract Problem {
     
     function Problem(string _description,uint _deadline){
          description = _description;
-         deadline = _deadline;
+         deadline = now + _deadline * 1 days;
     }
     
 
