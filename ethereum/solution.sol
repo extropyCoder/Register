@@ -1,4 +1,3 @@
-import "std.sol";
 import "team.sol";
 contract Solution{
    string description;

@@ -3,49 +3,27 @@ contract User {
     string name;
     string salt;
     string hashPassword;
+    string country;
+    uint  age;
     
-    function User(string _name,string _salt,string _hashPassword){
+    
+    function User(string _name,string _salt,string _hashPassword,string _country,uint16 _age){
         name = _name;
         salt = _salt;
         hashPassword = _hashPassword;
-        
+        country = _country;
+        age = _age;
     }
     
-}
-
-
-contract Child is User {
-
-
-string country;
-uint public age;
-
-function Child(string _name,string _salt,string _hashPassword,uint _age,string _country){
-    name = _name;
-    salt = _salt;
-    hashPassword = _hashPassword;
-    age = _age;
-    country = _country; 
-}
-
-function getAge() returns (uint){
-    return age;
-}
-
-
-}
-
-contract Teacher is Child {
-
-    function Teacher(string _name,string _salt,string _hashPassword,string _country){
-    name = _name;
-    salt = _salt;
-    hashPassword = _hashPassword;
-    country = _country; 
-
-        age = 100;  
+    function checkAge(uint16 _max,uint16 _min) returns (bool){
+        if ((age >=_min) && (age <=_max)){
+            return true;
+            
+        }
+        else{
+            return false;
+        }
     }
-
-
-
+    
+    
 }
