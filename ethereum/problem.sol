@@ -84,8 +84,8 @@ contract Team {
 
 
 contract Solution{
-   string name;
-   Team team;
+   string public name;
+   Team public team;
 
     function Solution(string _name,Team _team){
            name = _name; 
@@ -189,5 +189,8 @@ contract Problem {
     
 }
    
+   function getVotesForSolution(address _solution) returns (uint){
+       return solutionVotes[_solution];
+   }
     
 }
