@@ -6,7 +6,7 @@ import "problem.sol";
 contract Register is named("Register") ,owned {
     mapping(string=>address) users;
     mapping(address => uint) teams;
-    Problem[] problems;
+    Problem[] public problems;
     
 modifier userNotExists(string _userName ) { if (users[_userName]==address(0x0)) _ }
 modifier userIsCreator() {if (msg.sender==owner) _}
@@ -23,5 +23,7 @@ function createProblem(string _description,uint _deadline) userIsCreator returns
     
 }
     
+    
+    
+    
 }
-
